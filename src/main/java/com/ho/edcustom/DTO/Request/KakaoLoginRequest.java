@@ -1,14 +1,12 @@
 package com.ho.edcustom.DTO.Request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class KakaoLoginRequest {
     private String code;
 
-    public KakaoLoginRequest(String code) {
-        this.code = code;
-    }
 }
