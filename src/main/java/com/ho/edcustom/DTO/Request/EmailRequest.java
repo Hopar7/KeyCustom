@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class EmailRequest {
     private String email;
+
 }
