@@ -21,7 +21,9 @@ public class Item {
 
     String savetime;
 
-    String barebone; //베어본
+    String barebonecolor; //베어본
+
+    String barebonesize;
 
     String keycaps;
 
