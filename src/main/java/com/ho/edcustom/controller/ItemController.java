@@ -20,7 +20,7 @@ public class ItemController {
     @PostMapping("/items/save")
     public void itemSave(@RequestBody ItemRequest DTO)
     {
-        itemService.saveItem(DTO.getEmail(),DTO.getSavetime(),DTO.getBarebonecolor(),DTO.getBarebonesize(),DTO.getKeycaps(),DTO.getDesign(),DTO.getKeyswitch());
+        itemService.saveItem(DTO.getEmail(),DTO.getSaveTime(),DTO.getBareboneColor(),DTO.getKeyboardType(),DTO.getKeycapColor(),DTO.getDesign(),DTO.getSwitchColor());
     }
     @PostMapping("/items/find")
     public ResponseEntity<List<Item>> itemFind(@RequestBody EmailRequest DTO)

@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemRequest {
     private String email;
-    private String savetime;
-    private String barebonecolor;
-    private String barebonesize;
-    private String keycaps;
-    private String design;//디자인
-    private String keyswitch;  //스위치
+    private String saveTime;
+    private String bareboneColor;
+    private String keyboardType;
+    private String keycapColor;
+    private String design;
+    private String switchColor;  //스위치
 }

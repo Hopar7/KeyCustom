@@ -23,11 +23,11 @@ public class Item {
 
     String barebonecolor; //베어본
 
-    String barebonesize;
+    String keyboardtype;
 
-    String keycaps;
+    String keycapcolor;
 
     String design;//디자인
 
-    String keyswitch;  //스위치
+    String switchcolor;  //스위치
 }
