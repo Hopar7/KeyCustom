@@ -15,12 +15,12 @@ public class ItemService {
     public void saveItem(String email,String saveTime,String bareboneColor,String keyboardType,String keycapColor,String design,String switchColor){
         itemRepository.save(Item.builder()
                 .email(email)
-                .savetime(saveTime)
-                .barebonecolor(bareboneColor)
-                .keyboardtype(keyboardType)
-                .keycapcolor(keycapColor)
+                .saveTime(saveTime)
+                .bareboneColor(bareboneColor)
+                .keyboardType(keyboardType)
+                .keycapColor(keycapColor)
                 .design(design)
-                .switchcolor(switchColor)
+                .switchColor(switchColor)
                 .build());
     }
 
