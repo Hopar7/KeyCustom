@@ -19,15 +19,15 @@ public class Item {
 
     String email;
 
-    String saveTime;
+    String savetime;
 
-    String bareboneColor; //베어본
+    String barebonecolor; //베어본
 
-    String keyboardType;
+    String keyboardtype;
 
-    String keycapColor;
+    String keycapcolor;
 
     String design;//디자인
 
-    String switchColor;  //스위치
+    String switchcolor;  //스위치
 }

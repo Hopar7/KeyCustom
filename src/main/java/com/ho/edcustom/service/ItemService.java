@@ -12,15 +12,15 @@ import java.util.List;
 public class ItemService {
     private final ItemRepository itemRepository;
 
-    public void saveItem(String email,String saveTime,String bareboneColor,String keyboardType,String keycapColor,String design,String switchColor){
+    public void saveItem(String email,String savetime,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor){
         itemRepository.save(Item.builder()
                 .email(email)
-                .saveTime(saveTime)
-                .bareboneColor(bareboneColor)
-                .keyboardType(keyboardType)
-                .keycapColor(keycapColor)
+                .savetime(savetime)
+                .barebonecolor(barebonecolor)
+                .keyboardtype(keyboardtype)
+                .keycapcolor(keycapcolor)
                 .design(design)
-                .switchColor(switchColor)
+                .switchcolor(switchcolor)
                 .build());
     }
 
