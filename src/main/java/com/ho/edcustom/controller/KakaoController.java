@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class KakaoController {
     private final KakaoService kakaoService;
-
     @ResponseBody
     @PostMapping("/social/kakao/login")
     public LoginResponse kakaoLogin(@RequestBody KakaoLoginRequest DTO) throws JsonProcessingException {
