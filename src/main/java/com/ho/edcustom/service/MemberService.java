@@ -34,6 +34,7 @@ public class MemberService {
     public String loginMember(String email, String password) {
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+        //커스텀 exception만들어서 오류enum 쓰고 메세지는 고민해봐야할듯
         if (!passwordEncoder.matches(password, member.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
