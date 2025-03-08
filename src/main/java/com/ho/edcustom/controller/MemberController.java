@@ -4,10 +4,14 @@ import com.ho.edcustom.DTO.Request.EmailRequest;
 import com.ho.edcustom.DTO.Request.LoginRequest;
 import com.ho.edcustom.DTO.Request.RegisterRequest;
 import com.ho.edcustom.DTO.Request.TokenRequest;
-import com.ho.edcustom.DTO.Response.LoginResponse;
+import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
+import com.ho.edcustom.enumSet.ErrorCode;
 import com.ho.edcustom.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,9 +26,13 @@ public class MemberController {
         memberService.createMember(DTO.getName(),DTO.getEmail(), DTO.getPassword());
     }
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest DTO) {
-        LoginResponse Response = new LoginResponse(memberService.loginMember(DTO.getEmail(),DTO.getPassword()));
-        return Response;
+    public ResponseEntity<HttpResponse> login(@RequestBody LoginRequest DTO) {
+        HttpResponse Response =memberService.loginMember(DTO.getEmail(),DTO.getPassword());
+
+        //HttpHeaders httpHeaders = new HttpHeaders();
+        //httpHeaders.add("abc","abc");
+
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
 
     @PostMapping("/findbodybytoken")
