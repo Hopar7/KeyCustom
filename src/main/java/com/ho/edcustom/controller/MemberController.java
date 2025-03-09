@@ -6,11 +6,8 @@ import com.ho.edcustom.DTO.Request.RegisterRequest;
 import com.ho.edcustom.DTO.Request.TokenRequest;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
-import com.ho.edcustom.enumSet.ErrorCode;
 import com.ho.edcustom.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +18,11 @@ public class MemberController {
     private final JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/register")
-    public void register(@RequestBody RegisterRequest DTO)
+    public ResponseEntity<HttpResponse>  register(@RequestBody RegisterRequest DTO)
     {
-        memberService.createMember(DTO.getName(),DTO.getEmail(), DTO.getPassword());
+        HttpResponse Response =memberService.createMember(DTO.getName(),DTO.getEmail(), DTO.getPassword());
+
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
     @PostMapping("/login")
     public ResponseEntity<HttpResponse> login(@RequestBody LoginRequest DTO) {
@@ -36,10 +35,10 @@ public class MemberController {
     }
 
     @PostMapping("/findbodybytoken")
-    public String findBodyByToken(@RequestBody TokenRequest DTO)
+    public ResponseEntity<HttpResponse> findBodyByToken(@RequestBody TokenRequest DTO)
     {
-        return jwtTokenProvider.getClaimsFromToken(DTO.getToken());
-
+        HttpResponse Response =jwtTokenProvider.getClaimsFromToken(DTO.getToken());
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
 
     @PostMapping("/alreadyusingemail")

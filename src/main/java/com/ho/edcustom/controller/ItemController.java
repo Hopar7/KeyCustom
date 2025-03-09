@@ -2,9 +2,9 @@ package com.ho.edcustom.controller;
 
 import com.ho.edcustom.DTO.Request.EmailRequest;
 import com.ho.edcustom.DTO.Request.ItemRequest;
+import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.entity.Item;
 import com.ho.edcustom.service.ItemService;
-import com.ho.edcustom.service.KakaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,18 +18,16 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
     @PostMapping("/items/save")
-    public void itemSave(@RequestBody ItemRequest DTO)
+    public ResponseEntity<HttpResponse> itemSave(@RequestBody ItemRequest DTO)
     {
-        itemService.saveItem(DTO.getEmail(),DTO.getSavetime(),DTO.getBarebonecolor(),DTO.getKeyboardtype(),DTO.getKeycapcolor(),DTO.getDesign(),DTO.getSwitchcolor());
+        HttpResponse Response =itemService.saveItem(DTO.getEmail(),DTO.getSavetime(),DTO.getBarebonecolor(),DTO.getKeyboardtype(),DTO.getKeycapcolor(),DTO.getDesign(),DTO.getSwitchcolor());
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
     @PostMapping("/items/find")
-    public ResponseEntity<List<Item>> itemFind(@RequestBody EmailRequest DTO)
+    public ResponseEntity<HttpResponse> itemFind(@RequestBody EmailRequest DTO)
     {
-        List<Item> items = itemService.findcustomitem(DTO.getEmail());
-        if (items.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(items);
+        HttpResponse Response =itemService.findcustomitem(DTO.getEmail());
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
 
 }

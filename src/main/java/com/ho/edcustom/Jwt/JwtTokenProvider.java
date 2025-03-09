@@ -1,11 +1,14 @@
 package com.ho.edcustom.Jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.entity.Member;
+import com.ho.edcustom.enumSet.ErrorCode;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -72,13 +75,16 @@ public class JwtTokenProvider {
     public String getEamilFromToken(String token) {
         return (String) getClaims(token).get("email");
     }
-    public String getClaimsFromToken(String token) {
+    public HttpResponse getClaimsFromToken(String token) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.writeValueAsString(getClaims(token));
+            return new HttpResponse
+                    (HttpStatus.OK, ErrorCode.SUCCESS,mapper.writeValueAsString(getClaims(token)));
+                    //현재 .get("email")을 넣지않아서 복호화된 모든정보를 주는데 거기에 encoding된 비밀번호도있음
+                    // 이거는 jwt토큰을 고치거나 .get("email")을 쓸예정 전자가 더 적합해보임.
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.BAD_REQUEST,null);
         }
     }
 }

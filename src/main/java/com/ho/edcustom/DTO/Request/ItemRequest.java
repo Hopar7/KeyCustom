@@ -14,5 +14,5 @@ public class ItemRequest {
     private String keyboardtype;
     private String keycapcolor;
     private String design;
-    private String switchcolor;  //스위치
+    private String switchcolor;
 }

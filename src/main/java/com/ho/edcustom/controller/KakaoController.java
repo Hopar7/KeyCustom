@@ -17,8 +17,7 @@ public class KakaoController {
     @ResponseBody
     @PostMapping("/social/kakao/login")
     public HttpResponse kakaoLogin(@RequestBody KakaoLoginRequest DTO) throws JsonProcessingException {
-        HttpResponse Response = new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,kakaoService.kakaoLogin(DTO.getCode()));
-        return Response;
+        return new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,kakaoService.kakaoLogin(DTO.getCode()));
     }
     
 }

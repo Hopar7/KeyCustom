@@ -10,13 +10,13 @@ public class HttpResponse {
     private final HttpStatus status;
     private final int code;
     private final String message;
-    private final String token;
+    private final Object data;
 
-    public HttpResponse(HttpStatus status,ErrorCode code,String token){
+    public HttpResponse(HttpStatus status,ErrorCode code, Object data){
         this.status=status;
         this.code=code.getCode();
         this.message=code.getMessage();
-        this.token=token;
+        this.data=data;
 
     }
 
