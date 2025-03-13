@@ -3,6 +3,7 @@ package com.ho.edcustom.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ho.edcustom.DTO.Response.TokenResponse;
 import com.ho.edcustom.DTO.SocialUserInfo;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
 import com.ho.edcustom.entity.Member;
@@ -39,7 +40,7 @@ public class KakaoService {
 
     @Value("${kakao.user-info-uri}")
     private String userInfoUri;
-    public String kakaoLogin(String DTO) throws JsonProcessingException {
+    public TokenResponse kakaoLogin(String DTO) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
         String accessToken = getAccessToken(DTO);
 
@@ -50,7 +51,10 @@ public class KakaoService {
         Member kakaoUser = registerKakaoUserIfNeed(kakaoUserInfo);
 
         String token=jwtTokenProvider.generateToken(kakaoUser);
-        return token;
+
+        TokenResponse tokenResponse = new TokenResponse(token);
+
+        return tokenResponse;
     }
     // 1. "인가 코드"로 "액세스 토큰" 요청
     private String getAccessToken(String code) throws JsonProcessingException {

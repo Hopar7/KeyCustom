@@ -43,7 +43,7 @@ public class JwtTokenProvider {
         Map<String, Object> claims = new HashMap<>();
         claims.put("name",member.getName());
         claims.put("email",member.getEmail());
-        claims.put("password",member.getPassword());
+        //claims.put("password",member.getPassword());
         return claims;
     }
     private Claims getClaims(String token) {
