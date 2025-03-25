@@ -56,4 +56,21 @@ public class MemberService {
         TokenResponse token = new TokenResponse(jwtTokenProvider.generateToken(member.get()));
         return new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,token);
     }
+
+
+    public boolean confirmPassword(String email, String password)
+    {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isPresent()) {
+            if (passwordEncoder.matches(password, member.get().getPassword()))
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        return false;
+    }
 }

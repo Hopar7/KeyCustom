@@ -1,9 +1,6 @@
 package com.ho.edcustom.controller;
 
-import com.ho.edcustom.DTO.Request.EmailRequest;
-import com.ho.edcustom.DTO.Request.LoginRequest;
-import com.ho.edcustom.DTO.Request.RegisterRequest;
-import com.ho.edcustom.DTO.Request.TokenRequest;
+import com.ho.edcustom.DTO.Request.*;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
 import com.ho.edcustom.service.MemberService;
@@ -46,6 +43,14 @@ public class MemberController {
     {
         return memberService.alreadyUsingemail(DTO.getEmail());
     }
+    @PostMapping("/confirmpassword")
+    public boolean confirmPassword(@RequestBody PasswordRequest DTO)
+    {
+        return memberService.confirmPassword(DTO.getEmail(), DTO.getPassword());
+    }
+    
+
+
 
     @GetMapping("/hello")
     public String hellocontroller(){
