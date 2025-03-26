@@ -58,19 +58,21 @@ public class MemberService {
     }
 
 
-    public boolean confirmPassword(String email, String password)
+//    public boolean confirmPassword(String email, String password)
+//    {
+//        Optional<Member> member = memberRepository.findByEmail(email);
+//        return member.filter(value -> passwordEncoder.matches(password, value.getPassword())).isPresent();
+//    }
+    public HttpResponse updatePassword(String email,String currentPassword,String newPassword)
     {
         Optional<Member> member = memberRepository.findByEmail(email);
-        if (member.isPresent()) {
-            if (passwordEncoder.matches(password, member.get().getPassword()))
-            {
-                return true;
+            if (passwordEncoder.matches(currentPassword, member.get().getPassword())) {
+                memberRepository.save(member.get().updatePassword(passwordEncoder.encode(newPassword)));
+
+                return new HttpResponse(HttpStatus.OK, ErrorCode.SUCCESS, null);
             }
-        }
-        else
-        {
-            return false;
-        }
-        return false;
+        return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.BAD_REQUEST, null);
     }
+
+
 }

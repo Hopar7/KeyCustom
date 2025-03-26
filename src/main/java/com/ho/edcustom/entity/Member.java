@@ -23,4 +23,12 @@ public class Member {
     String email;
 
     String password;
+
+
+
+    public Member updatePassword(String newPassword)
+    {
+        this.password =newPassword;
+        return this;
+    }
 }
