@@ -2,32 +2,21 @@ package com.ho.edcustom.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "shareitems")
-public class SharedItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@SuperBuilder(toBuilder = true)
+public class SharedItem extends BaseItem{
 
-    String email;
+    String sharedBy;
 
-    String savetime;
 
-    String barebonecolor; //베어본
-
-    String keyboardtype;
-
-    String keycapcolor;
-
-    String design;//디자인
-
-    String switchcolor;  //스위치
+    //int liked 좋아요 추가
+    //String
 }

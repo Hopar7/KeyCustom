@@ -2,32 +2,17 @@ package com.ho.edcustom.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "items")
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@SuperBuilder(toBuilder = true)
+public class Item extends BaseItem{
 
-    String email;
-
-    String savetime;
-
-    String barebonecolor; //베어본
-
-    String keyboardtype;
-
-    String keycapcolor;
-
-    String design;//디자인
-
-    String switchcolor;  //스위치
+    String createdBy;
 }

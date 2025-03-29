@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,9 +17,9 @@ import java.util.stream.Stream;
 public class ItemService {
     private final ItemRepository itemRepository;
 
-    public HttpResponse saveItem(String email,String saveTime,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor){
+    public HttpResponse saveItem(String email,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor){
 
-        if (Stream.of(email, saveTime, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
+        if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
             return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST,null);
         }
@@ -26,12 +27,14 @@ public class ItemService {
 
         itemRepository.save(Item.builder()
                 .email(email)
-                .savetime(saveTime)
                 .barebonecolor(barebonecolor)
                 .keyboardtype(keyboardtype)
                 .keycapcolor(keycapcolor)
                 .design(design)
                 .switchcolor(switchcolor)
+                .createdAt(LocalDateTime.now())
+                .lastModifiedAt(LocalDateTime.now())
+                .createdBy(email)
                 .build());
 
         return new HttpResponse(HttpStatus.CREATED, ErrorCode.CREATED,null);

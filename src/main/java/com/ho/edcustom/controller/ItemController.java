@@ -17,7 +17,13 @@ public class ItemController {
     @PostMapping("/items/save")
     public ResponseEntity<HttpResponse> itemSave(@RequestBody ItemRequest DTO)
     {
-        HttpResponse Response =itemService.saveItem(DTO.getEmail(),DTO.getSavetime(),DTO.getBarebonecolor(),DTO.getKeyboardtype(),DTO.getKeycapcolor(),DTO.getDesign(),DTO.getSwitchcolor());
+        HttpResponse Response =itemService.saveItem
+                (DTO.getEmail(),
+                 DTO.getBarebonecolor(),
+                 DTO.getKeyboardtype(),
+                 DTO.getKeycapcolor(),
+                 DTO.getDesign(),
+                 DTO.getSwitchcolor());
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @PostMapping("/items/find")
