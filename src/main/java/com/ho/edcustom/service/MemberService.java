@@ -66,13 +66,17 @@ public class MemberService {
     public HttpResponse updatePassword(String email,String currentPassword,String newPassword)
     {
         Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isPresent()) {
             if (passwordEncoder.matches(currentPassword, member.get().getPassword())) {
-                memberRepository.save(member.get().updatePassword(passwordEncoder.encode(newPassword)));
 
+                Member updateMember = member.get().toBuilder()
+                        .password(passwordEncoder.encode(newPassword))
+                        .build();
+
+                memberRepository.save(updateMember);
                 return new HttpResponse(HttpStatus.OK, ErrorCode.SUCCESS, null);
             }
+        }
         return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.BAD_REQUEST, null);
     }
-
-
 }

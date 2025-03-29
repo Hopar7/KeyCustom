@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "members")
@@ -19,6 +19,11 @@ public class Member {
 
     String name;
 
+    //String profile; //사진 할까싶은데 일단 생성
+
+    //@Column(unique = true)
+    //String nickName;
+
     @Column(unique = true)
     String email;
 
@@ -26,9 +31,9 @@ public class Member {
 
 
 
-    public Member updatePassword(String newPassword)
-    {
-        this.password =newPassword;
-        return this;
-    }
+//    public Member updatePassword(String newPassword)
+//    {
+//        this.password =newPassword;
+//        return this;
+//    }
 }

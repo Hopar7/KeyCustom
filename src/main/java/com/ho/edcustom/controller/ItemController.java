@@ -3,15 +3,12 @@ package com.ho.edcustom.controller;
 import com.ho.edcustom.DTO.Request.EmailRequest;
 import com.ho.edcustom.DTO.Request.ItemRequest;
 import com.ho.edcustom.DTO.Response.HttpResponse;
-import com.ho.edcustom.entity.Item;
 import com.ho.edcustom.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

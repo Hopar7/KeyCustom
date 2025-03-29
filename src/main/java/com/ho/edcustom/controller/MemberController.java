@@ -57,8 +57,6 @@ public class MemberController {
         return new ResponseEntity<>(Response,Response.getStatus());
     }
 
-
-
     @GetMapping("/hello")
     public String hellocontroller(){
         return "hello world";
