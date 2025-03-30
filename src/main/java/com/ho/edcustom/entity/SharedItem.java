@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "shareitems")
+@Table(name = "shareditems")
 @SuperBuilder(toBuilder = true)
 public class SharedItem extends BaseItem{
 
@@ -19,6 +19,8 @@ public class SharedItem extends BaseItem{
     @Column(name = "shareitem_id")
     private Long id;
 
-    String sharedBy;
+    private String sharedBy;
+
+    private int likes;
 
 }

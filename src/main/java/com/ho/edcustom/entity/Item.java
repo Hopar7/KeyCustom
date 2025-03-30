@@ -19,5 +19,5 @@ public class Item extends BaseItem{
     @Column(name = "item_id")
     private Long id;
 
-    String createdBy;
+    private String createdBy;
 }

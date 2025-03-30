@@ -44,7 +44,7 @@ public class ItemService {
     public HttpResponse findcustomitem(String email)
     {
         if (itemRepository.findItemByEmail(email).isEmpty()) {
-            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.NOT_FOUND,null);
+            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.CUSTOM_NOT_FOUND,null);
             //현재 not found만 있는데 id가 틀릴경우도 제어해야함.
         }
         List<Item> list =itemRepository.findItemByEmail(email);

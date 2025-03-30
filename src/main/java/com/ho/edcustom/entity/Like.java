@@ -1,6 +1,8 @@
 package com.ho.edcustom.entity;
 
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
@@ -9,7 +11,9 @@ import static jakarta.persistence.FetchType.LAZY;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "likes")
 public class Like {
     @Id

@@ -2,10 +2,8 @@ package com.ho.edcustom.service;
 
 
 import com.ho.edcustom.DTO.Response.HttpResponse;
-import com.ho.edcustom.entity.Item;
 import com.ho.edcustom.entity.SharedItem;
 import com.ho.edcustom.enumSet.ErrorCode;
-import com.ho.edcustom.repository.ItemRepository;
 import com.ho.edcustom.repository.SharedItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,6 +36,7 @@ public class SharedItemService {
                 .createdAt(LocalDateTime.now())
                 .lastModifiedAt(LocalDateTime.now())
                 .sharedBy(email)
+                .likes(0)
                 .build());
 
         return new HttpResponse(HttpStatus.CREATED, ErrorCode.CREATED,null);
@@ -46,7 +45,7 @@ public class SharedItemService {
     public HttpResponse findItem()
     {
         if (sharedItemRepository.findAll().isEmpty()) {
-            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.NOT_FOUND,null);
+            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.CUSTOM_NOT_FOUND,null);
             //현재 not found만 있는데 id가 틀릴경우도 제어해야함.
         }
         List<SharedItem> list =sharedItemRepository.findAll();
