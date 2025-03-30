@@ -1,9 +1,12 @@
 package com.ho.edcustom.service;
 
+
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.entity.Item;
+import com.ho.edcustom.entity.SharedItem;
 import com.ho.edcustom.enumSet.ErrorCode;
 import com.ho.edcustom.repository.ItemRepository;
+import com.ho.edcustom.repository.SharedItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,10 +17,10 @@ import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
-public class ItemService {
-    private final ItemRepository itemRepository;
+public class SharedItemService {
+    private final SharedItemRepository sharedItemRepository;
 
-    public HttpResponse saveItem(String email,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor){
+    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor){
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
@@ -25,7 +28,7 @@ public class ItemService {
         }
 
 
-        itemRepository.save(Item.builder()
+        sharedItemRepository.save(SharedItem.builder()
                 .email(email)
                 .barebonecolor(barebonecolor)
                 .keyboardtype(keyboardtype)
@@ -34,21 +37,19 @@ public class ItemService {
                 .switchcolor(switchcolor)
                 .createdAt(LocalDateTime.now())
                 .lastModifiedAt(LocalDateTime.now())
-                .createdBy(email)
+                .sharedBy(email)
                 .build());
 
         return new HttpResponse(HttpStatus.CREATED, ErrorCode.CREATED,null);
     }
 
-
-    public HttpResponse findcustomitem(String email)
+    public HttpResponse findItem()
     {
-        if (itemRepository.findItemByEmail(email).isEmpty()) {
+        if (sharedItemRepository.findAll().isEmpty()) {
             return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.NOT_FOUND,null);
             //현재 not found만 있는데 id가 틀릴경우도 제어해야함.
         }
-        List<Item> list =itemRepository.findItemByEmail(email);
+        List<SharedItem> list =sharedItemRepository.findAll();
         return new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,list);
     }
-
 }

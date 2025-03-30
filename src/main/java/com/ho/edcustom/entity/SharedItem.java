@@ -14,9 +14,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public class SharedItem extends BaseItem{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shareitem_id")
+    private Long id;
+
     String sharedBy;
 
-
-    //int liked 좋아요 추가
-    //String
 }

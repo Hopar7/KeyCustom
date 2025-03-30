@@ -18,7 +18,7 @@ public class MemberController {
     @PostMapping("/register")
     public ResponseEntity<HttpResponse>  register(@RequestBody RegisterRequest DTO)
     {
-        HttpResponse Response =memberService.createMember(DTO.getName(),DTO.getEmail(), DTO.getPassword());
+        HttpResponse Response =memberService.createMember(DTO.getName(),DTO.getNickname(),DTO.getEmail(), DTO.getPassword());
 
         return new ResponseEntity<>(Response,Response.getStatus());
     }
@@ -43,6 +43,11 @@ public class MemberController {
     public boolean alreadyUsingEmail(@RequestBody EmailRequest DTO)
     {
         return memberService.alreadyUsingemail(DTO.getEmail());
+    }
+    @PostMapping("/alreadyusingnickname")
+    public boolean alreadyUsingNickName(@RequestBody NicknameRequest DTO)
+    {
+        return memberService.alreadyUsingnickname(DTO.getNickname());
     }
 //    @PostMapping("/confirmpassword")
 //    public boolean confirmPassword(@RequestBody PasswordRequest DTO)

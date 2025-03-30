@@ -20,7 +20,7 @@ public class MemberService {
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
-    public HttpResponse createMember(String name,String email,String password){
+    public HttpResponse createMember(String name,String nickname,String email,String password){
 
         if(alreadyUsingemail(email))
         {
@@ -29,6 +29,7 @@ public class MemberService {
 
         memberRepository.save(Member.builder()
                 .name(name)
+                .nickname(nickname)
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .build());
@@ -38,6 +39,11 @@ public class MemberService {
     public boolean alreadyUsingemail(String email)
     {
         return memberRepository.findByEmail(email).isPresent();
+
+    }
+    public boolean alreadyUsingnickname(String email)
+    {
+        return memberRepository.findByNickname(email).isPresent();
 
     }
 

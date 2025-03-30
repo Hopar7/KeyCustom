@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -13,16 +15,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "members")
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     String name;
 
-    //String profile; //사진 할까싶은데 일단 생성
+    String profile; //프로필 사진 firebase url
 
-    //@Column(unique = true)
-    //String nickName;
+    @Column(unique = true)
+    String nickname;
 
     @Column(unique = true)
     String email;
