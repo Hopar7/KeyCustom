@@ -9,6 +9,7 @@ public enum ErrorCode {
     BAD_REQUEST(400, "잘못된 요청입니다."),
     LOGIN_BAD_REQUEST(400,"아이디 또는 비밀번호가 틀렸습니다."),
     BAD_REQUEST_DUPLICATION(400,"이미 사용된 아이디 입니다."),
+    NICKNAME_DUPLICATION(400,"이미 사용된 닉네임 입니다."),
     ITEM_BAD_REQUEST(400,"내용이 누락되었습니다."),
     UNAUTHORIZED(401, "권한이 없습니다."),
     NOT_FOUND(404,"저장된 커스텀이 없습니다."),

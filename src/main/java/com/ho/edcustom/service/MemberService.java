@@ -39,11 +39,29 @@ public class MemberService {
     public boolean alreadyUsingemail(String email)
     {
         return memberRepository.findByEmail(email).isPresent();
+    }
+    public HttpResponse updatenickname(String email,String nickname)
+    {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if ((alreadyUsingnickname(nickname)))
+        {
+            return new HttpResponse(HttpStatus.BAD_REQUEST,ErrorCode.NICKNAME_DUPLICATION,null);
+        }
+        else
+        {
+            Member updateMember = member.get().toBuilder()
+                    .nickname(nickname)
+                    .build();
+
+            memberRepository.save(updateMember);
+            return new HttpResponse(HttpStatus.OK, ErrorCode.SUCCESS, null);
+        }
 
     }
-    public boolean alreadyUsingnickname(String email)
+
+    public boolean alreadyUsingnickname(String nickname)
     {
-        return memberRepository.findByNickname(email).isPresent();
+        return memberRepository.findByNickname(nickname).isPresent();
 
     }
 

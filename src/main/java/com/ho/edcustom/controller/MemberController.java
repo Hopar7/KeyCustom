@@ -5,7 +5,6 @@ import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
 import com.ho.edcustom.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.MemberUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,16 +43,20 @@ public class MemberController {
     {
         return memberService.alreadyUsingemail(DTO.getEmail());
     }
+
     @PostMapping("/alreadyusingnickname")
-    public boolean alreadyUsingNickName(@RequestBody NicknameRequest DTO)
+    public boolean alreadyUsingNickName(@RequestBody NickNameRequest DTO)
     {
         return memberService.alreadyUsingnickname(DTO.getNickname());
     }
-//    @PostMapping("/confirmpassword")
-//    public boolean confirmPassword(@RequestBody PasswordRequest DTO)
-//    {
-//        return memberService.confirmPassword(DTO.getEmail(), DTO.getPassword());
-//    }
+
+    @PostMapping("/updatenickname")
+    public ResponseEntity<HttpResponse> updateNickName(@RequestBody UpdateRequest DTO)
+    {
+        HttpResponse Response = memberService.updatenickname(DTO.getEmail(),DTO.getNickname());
+        return new ResponseEntity<>(Response,Response.getStatus());
+    }
+
     @PatchMapping("/changepassword")
     public ResponseEntity<HttpResponse> updatePassword(@RequestBody PasswordRequest DTO)
     {
