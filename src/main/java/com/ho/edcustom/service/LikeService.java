@@ -36,9 +36,13 @@ public class LikeService {
         }
 
         Optional<Like> dup_like = likeRepository.findByMemberAndSharedItem(member.get(),sharedItem.get());
+        SharedItem share = sharedItem.get();
         if(dup_like.isPresent())
         {
+
             likeRepository.delete(dup_like.get());
+            share.decrease();
+            sharedItemRepository.save(share);
             return new HttpResponse(HttpStatus.OK,ErrorCode.LIKE_DELETE,null);
         }
 
@@ -46,6 +50,7 @@ public class LikeService {
                 .member(member.get())
                 .sharedItem(sharedItem.get())
                 .build();
+        share.increase();
         likeRepository.save(like);
         return new HttpResponse(HttpStatus.OK,ErrorCode.LIKE_INSERT,null);
     }

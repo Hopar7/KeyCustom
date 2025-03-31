@@ -23,4 +23,13 @@ public class SharedItem extends BaseItem{
 
     private int likes;
 
+
+    public void increase()
+    {
+        this.likes++;
+    }
+    public void decrease()
+    {
+        this.likes--;
+    }
 }
