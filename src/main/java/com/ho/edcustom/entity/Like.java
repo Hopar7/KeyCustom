@@ -26,6 +26,6 @@ public class Like {
     private Member member;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "shareitem_id")
+    @JoinColumn(name = "shareditem_id")
     private SharedItem sharedItem;
 }

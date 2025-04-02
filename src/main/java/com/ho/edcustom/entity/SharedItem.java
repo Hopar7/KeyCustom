@@ -16,7 +16,7 @@ public class SharedItem extends BaseItem{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shareitem_id")
+    @Column(name = "shareditem_id")
     private Long id;
 
     private String sharedBy;

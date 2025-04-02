@@ -1,5 +1,6 @@
 package com.ho.edcustom.service;
 
+import com.ho.edcustom.DTO.LikeDTO;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.entity.Like;
 import com.ho.edcustom.entity.Member;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,5 +55,28 @@ public class LikeService {
         share.increase();
         likeRepository.save(like);
         return new HttpResponse(HttpStatus.OK,ErrorCode.LIKE_INSERT,null);
+    }
+
+
+    public HttpResponse memberliked(Long memberid)
+    {
+        List<LikeDTO> list = likeRepository.findDTOByMemberId(memberid);
+
+        if (list.isEmpty()) {
+            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND,null);
+        }
+
+        return new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,list);
+    }
+
+
+    public HttpResponse checkliked(Long memberid)
+    {;
+        List<SharedItem> list = likeRepository.findSharedItemsByMemberId(memberid);
+        if (list.isEmpty()) {
+            return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND,null);
+        }
+
+        return new HttpResponse(HttpStatus.OK,ErrorCode.SUCCESS,list);
     }
 }
