@@ -23,7 +23,8 @@ public class ItemController {
                  DTO.getKeyboardtype(),
                  DTO.getKeycapcolor(),
                  DTO.getDesign(),
-                 DTO.getSwitchcolor());
+                 DTO.getSwitchcolor(),
+                 DTO.getImageurl());
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @PostMapping("/items/find")

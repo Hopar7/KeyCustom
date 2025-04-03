@@ -19,11 +19,12 @@ public class SharedItemController {
     {
         HttpResponse Response =sharedItemService.saveItem
                 (DTO.getEmail(),
-                        DTO.getBarebonecolor(),
-                        DTO.getKeyboardtype(),
-                        DTO.getKeycapcolor(),
-                        DTO.getDesign(),
-                        DTO.getSwitchcolor());
+                 DTO.getBarebonecolor(),
+                 DTO.getKeyboardtype(),
+                 DTO.getKeycapcolor(),
+                 DTO.getDesign(),
+                 DTO.getSwitchcolor(),
+                 DTO.getImageurl());
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @GetMapping("/shareditems/find")

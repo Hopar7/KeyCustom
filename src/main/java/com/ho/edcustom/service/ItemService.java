@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class ItemService {
     private final ItemRepository itemRepository;
 
-    public HttpResponse saveItem(String email,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor){
+    public HttpResponse saveItem(String email,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor,String imageurl){
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
@@ -32,6 +32,7 @@ public class ItemService {
                 .keycapcolor(keycapcolor)
                 .design(design)
                 .switchcolor(switchcolor)
+                .imageurl(imageurl)
                 .createdAt(LocalDateTime.now())
                 .lastModifiedAt(LocalDateTime.now())
                 .createdBy(email)

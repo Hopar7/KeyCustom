@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 public class SharedItemService {
     private final SharedItemRepository sharedItemRepository;
 
-    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor){
+    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor,String imageurl){
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
@@ -33,6 +33,7 @@ public class SharedItemService {
                 .keycapcolor(keycapcolor)
                 .design(design)
                 .switchcolor(switchcolor)
+                .imageurl(imageurl)
                 .createdAt(LocalDateTime.now())
                 .lastModifiedAt(LocalDateTime.now())
                 .sharedBy(email)
