@@ -6,7 +6,11 @@ import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.cloud.StorageClient;
+import com.ho.edcustom.DTO.Response.HttpResponse;
+import com.ho.edcustom.enumSet.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +29,7 @@ public class FireBaseService {
     @Value("${app.firebase-bucket}")
     private String firebaseBucket;
 
-    public String uploadProfile(MultipartFile file,String namefile)
+    public HttpResponse uploadProfile(MultipartFile file, String namefile)
         throws IOException, FirebaseAuthException{
         Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
         Storage storage = bucket.getStorage();
@@ -52,9 +56,10 @@ public class FireBaseService {
         String downloadUrl = "https://firebasestorage.googleapis.com/v0/b/" + bucket.getName() +
                 "/o/" + fileName.replace("/", "%2F") + "?alt=media&token=" + downloadToken;
 
-        return downloadUrl;
+
+        return new HttpResponse(HttpStatus.CREATED, ErrorCode.CREATED, downloadUrl);
     }
-    public String uploadItem(MultipartFile file,String namefile)
+    public HttpResponse uploadItem(MultipartFile file,String namefile)
             throws IOException, FirebaseAuthException{
         Bucket bucket = StorageClient.getInstance().bucket(firebaseBucket);
         Storage storage = bucket.getStorage();
@@ -81,6 +86,6 @@ public class FireBaseService {
         String downloadUrl = "https://firebasestorage.googleapis.com/v0/b/" + bucket.getName() +
                 "/o/" + fileName.replace("/", "%2F") + "?alt=media&token=" + downloadToken;
 
-        return downloadUrl;
+        return new HttpResponse(HttpStatus.CREATED, ErrorCode.CREATED, downloadUrl);
     }
 }
