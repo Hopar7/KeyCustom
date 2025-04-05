@@ -31,7 +31,7 @@ public abstract class BaseItem {
 
     String switchcolor;  //스위치
 
-    String imageurl;
+    String imageUrl;
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;

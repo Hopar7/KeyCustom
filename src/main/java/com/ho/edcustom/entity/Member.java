@@ -23,7 +23,8 @@ public class Member {
 
     String name;
 
-    String profile; //프로필 사진 firebase url
+    @Column(name = "imageurl")
+    String imageUrl;
 
     @Column(unique = true)
     String nickname;

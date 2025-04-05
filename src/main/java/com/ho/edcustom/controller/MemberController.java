@@ -3,6 +3,7 @@ package com.ho.edcustom.controller;
 import com.ho.edcustom.DTO.Request.*;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.Jwt.JwtTokenProvider;
+import com.ho.edcustom.service.FireBaseService;
 import com.ho.edcustom.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,11 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtTokenProvider jwtTokenProvider;
 
+
     @PostMapping("/register")
     public ResponseEntity<HttpResponse>  register(@RequestBody RegisterRequest DTO)
     {
-        HttpResponse Response =memberService.createMember(DTO.getName(),DTO.getNickname(),DTO.getEmail(), DTO.getPassword());
+        HttpResponse Response =memberService.createMember(DTO.getName(),DTO.getProfileImage(),DTO.getNickname(),DTO.getEmail(), DTO.getPassword());
 
         return new ResponseEntity<>(Response,Response.getStatus());
     }

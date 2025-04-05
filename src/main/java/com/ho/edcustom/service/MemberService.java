@@ -19,16 +19,21 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
+    private final FireBaseService fireBaseService;
 
-    public HttpResponse createMember(String name,String nickname,String email,String password){
+    public HttpResponse createMember(String name,String profileImage,String nickname,String email,String password){
 
         if(alreadyUsingemail(email))
         {
             return new HttpResponse(HttpStatus.BAD_REQUEST,ErrorCode.BAD_REQUEST_DUPLICATION,null);
         }
 
+        String imageUrl =fireBaseService.uploadProfile(profileImage);
+
+
         memberRepository.save(Member.builder()
                 .name(name)
+                .imageUrl(imageUrl)
                 .nickname(nickname)
                 .email(email)
                 .password(passwordEncoder.encode(password))

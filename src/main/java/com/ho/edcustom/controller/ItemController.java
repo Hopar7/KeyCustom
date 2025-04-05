@@ -24,7 +24,7 @@ public class ItemController {
                  DTO.getKeycapcolor(),
                  DTO.getDesign(),
                  DTO.getSwitchcolor(),
-                 DTO.getImageurl());
+                 DTO.getItemimage());
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @PostMapping("/items/find")

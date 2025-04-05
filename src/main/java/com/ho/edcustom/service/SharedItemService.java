@@ -17,14 +17,14 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class SharedItemService {
     private final SharedItemRepository sharedItemRepository;
-
-    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor,String imageurl){
+    private final FireBaseService fireBaseService;
+    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor,String itemimage){
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
             return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST,null);
         }
-
+        String imageUrl =fireBaseService.uploadItem(itemimage);
 
         sharedItemRepository.save(SharedItem.builder()
                 .email(email)
@@ -33,7 +33,7 @@ public class SharedItemService {
                 .keycapcolor(keycapcolor)
                 .design(design)
                 .switchcolor(switchcolor)
-                .imageurl(imageurl)
+                .imageUrl(imageUrl)
                 .createdAt(LocalDateTime.now())
                 .lastModifiedAt(LocalDateTime.now())
                 .sharedBy(email)
