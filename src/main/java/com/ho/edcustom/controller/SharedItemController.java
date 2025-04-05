@@ -16,7 +16,9 @@ import java.io.IOException;
 public class SharedItemController {
     private final SharedItemService sharedItemService;
     @PostMapping(value = "/shareditems/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<HttpResponse> itemSave(@RequestBody ItemRequest DTO,@RequestParam("file") MultipartFile multipartFile) throws IOException {
+    public ResponseEntity<HttpResponse> sharedItemSave(
+            @RequestPart ItemRequest DTO,
+            @RequestPart(value = "file",required = false) MultipartFile multipartFile) throws IOException {
         HttpResponse Response =sharedItemService.saveItem
                 (DTO.getEmail(),
                  DTO.getBarebonecolor(),
