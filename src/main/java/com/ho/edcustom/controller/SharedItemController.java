@@ -4,19 +4,19 @@ import com.ho.edcustom.DTO.Request.ItemRequest;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.service.SharedItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
 public class SharedItemController {
     private final SharedItemService sharedItemService;
-    @PostMapping("/shareditems/save")
-    public ResponseEntity<HttpResponse> itemSave(@RequestBody ItemRequest DTO)
-    {
+    @PostMapping(value = "/shareditems/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<HttpResponse> itemSave(@RequestBody ItemRequest DTO,@RequestParam("file") MultipartFile multipartFile) throws IOException {
         HttpResponse Response =sharedItemService.saveItem
                 (DTO.getEmail(),
                  DTO.getBarebonecolor(),
@@ -24,7 +24,7 @@ public class SharedItemController {
                  DTO.getKeycapcolor(),
                  DTO.getDesign(),
                  DTO.getSwitchcolor(),
-                 DTO.getItemimage());
+                        multipartFile);
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @GetMapping("/shareditems/find")
