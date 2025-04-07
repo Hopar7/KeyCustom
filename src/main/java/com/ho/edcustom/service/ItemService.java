@@ -7,7 +7,9 @@ import com.ho.edcustom.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
@@ -17,13 +19,13 @@ import java.util.stream.Stream;
 public class ItemService {
     private final ItemRepository itemRepository;
     private final FireBaseService fireBaseService;
-    public HttpResponse saveItem(String email,String barebonecolor,String keyboardtype,String keycapcolor,String design,String switchcolor,String itemimage){
+    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor, MultipartFile multipartFile) throws IOException {
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
             return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST,null);
         }
-        String imageUrl =fireBaseService.uploadItem(itemimage);
+        String imageUrl =fireBaseService.uploadItem(multipartFile);
 
         itemRepository.save(Item.builder()
                 .email(email)
