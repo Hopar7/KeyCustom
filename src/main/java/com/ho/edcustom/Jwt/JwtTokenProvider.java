@@ -41,6 +41,7 @@ public class JwtTokenProvider {
     }
     private Map<String, Object> createClaims(Member member) { // payload
         Map<String, Object> claims = new HashMap<>();
+        claims.put("id",member.getId());
         claims.put("name",member.getName());
         claims.put("email",member.getEmail());
         claims.put("nickname",member.getNickname());
