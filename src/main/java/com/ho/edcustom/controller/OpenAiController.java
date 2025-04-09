@@ -5,6 +5,7 @@ import com.ho.edcustom.DTO.Request.GPTRequest;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.service.OpenAiService;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.ParseException;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,9 @@ public class OpenAiController {
 //        HttpResponse Response = openAiService.aiResponse(DTO.getMessage());
 //        return new ResponseEntity<>(Response,Response.getStatus());
 //    }
-    public ChatResponse generate(@RequestBody GPTRequest DTO) throws JsonProcessingException {
-        ChatResponse Response = openAiService.aiResponse(DTO.getMessage());
-        return Response;
+    public ResponseEntity<HttpResponse> generate() throws ParseException {
+        HttpResponse Response = openAiService.aiResponse();
+        return new ResponseEntity<>(Response,Response.getStatus());
     }
 
 }

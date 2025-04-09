@@ -1,10 +1,12 @@
 package com.ho.edcustom.DTO.Response;
 
 import com.ho.edcustom.enumSet.ErrorCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
+@AllArgsConstructor
 public class HttpResponse {
 
     private final HttpStatus status;
