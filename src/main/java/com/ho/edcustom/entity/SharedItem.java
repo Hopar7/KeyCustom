@@ -19,6 +19,8 @@ public class SharedItem extends BaseItem{
     @Column(name = "shareditem_id")
     private Long id;
 
+    private String title;
+
     private String sharedBy;
 
     private int likes;

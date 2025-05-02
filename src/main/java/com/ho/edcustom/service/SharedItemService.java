@@ -20,16 +20,16 @@ import java.util.stream.Stream;
 public class SharedItemService {
     private final SharedItemRepository sharedItemRepository;
     private final FireBaseService fireBaseService;
-    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor, MultipartFile multipartFile) throws IOException {
+    public HttpResponse saveItem(String email,String title, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor, String imageUrl){
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
-            return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST,null);
+            return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST, null);
         }
-        String imageUrl =fireBaseService.uploadItem(multipartFile);
 
         sharedItemRepository.save(SharedItem.builder()
                 .email(email)
+                .title(title)
                 .barebonecolor(barebonecolor)
                 .keyboardtype(keyboardtype)
                 .keycapcolor(keycapcolor)

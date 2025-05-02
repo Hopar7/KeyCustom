@@ -1,6 +1,7 @@
 package com.ho.edcustom.controller;
 
 import com.ho.edcustom.DTO.Request.ItemRequest;
+import com.ho.edcustom.DTO.Request.SitemRequest;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.service.SharedItemService;
 import lombok.RequiredArgsConstructor;
@@ -16,17 +17,16 @@ import java.io.IOException;
 public class SharedItemController {
     private final SharedItemService sharedItemService;
     @PostMapping(value = "/shareditems/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<HttpResponse> sharedItemSave(
-            @RequestPart ItemRequest DTO,
-            @RequestPart(value = "file",required = false) MultipartFile multipartFile) throws IOException {
+    public ResponseEntity<HttpResponse> sharedItemSave(@RequestPart SitemRequest DTO){
         HttpResponse Response =sharedItemService.saveItem
                 (DTO.getEmail(),
+                 DTO.getTitle(),
                  DTO.getBarebonecolor(),
                  DTO.getKeyboardtype(),
                  DTO.getKeycapcolor(),
                  DTO.getDesign(),
                  DTO.getSwitchcolor(),
-                        multipartFile);
+                 DTO.getImageUrl());
         return new ResponseEntity<>(Response,Response.getStatus());
     }
     @GetMapping("/shareditems/find")
