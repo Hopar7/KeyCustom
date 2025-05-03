@@ -21,6 +21,8 @@ import java.time.LocalDateTime;
 public abstract class BaseItem {
     String email;
 
+    String title;
+
     String barebonecolor; //베어본
 
     String keyboardtype;

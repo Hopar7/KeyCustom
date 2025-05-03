@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class ItemService {
     private final ItemRepository itemRepository;
     private final FireBaseService fireBaseService;
-    public HttpResponse saveItem(String email, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor, MultipartFile multipartFile) throws IOException {
+    public HttpResponse saveItem(String email,String title, String barebonecolor, String keyboardtype, String keycapcolor, String design, String switchcolor, MultipartFile multipartFile) throws IOException {
 
         if (Stream.of(email, barebonecolor, keyboardtype, keycapcolor, design, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
@@ -29,6 +29,7 @@ public class ItemService {
 
         itemRepository.save(Item.builder()
                 .email(email)
+                .title(title)
                 .barebonecolor(barebonecolor)
                 .keyboardtype(keyboardtype)
                 .keycapcolor(keycapcolor)

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemRequest {
     private String email;
+    private String title;
     private String barebonecolor;
     private String keyboardtype;
     private String keycapcolor;

@@ -22,6 +22,7 @@ public class ItemController {
             @RequestPart(value = "file",required = false) MultipartFile multipartFile) throws IOException {
         HttpResponse Response =itemService.saveItem
                 (DTO.getEmail(),
+                 DTO.getTitle(),
                  DTO.getBarebonecolor(),
                  DTO.getKeyboardtype(),
                  DTO.getKeycapcolor(),
