@@ -1,11 +1,15 @@
 package com.ho.edcustom.entity;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.ho.edcustom.DTO.KeyCaps;
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,7 +31,9 @@ public abstract class BaseItem {
 
     String keyboardtype;
 
-    String keycapcolor;
+    @Type(JsonType.class)
+    @Column(columnDefinition = "jsonb")
+    KeyCaps keycapcolor;
 
     String design;//디자인
 

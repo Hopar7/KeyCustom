@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class PasswordRequest {
     private String email;
     private String currentPassword;
-
     private String newPassword;
 }

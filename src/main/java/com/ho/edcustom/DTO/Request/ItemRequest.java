@@ -1,8 +1,12 @@
 package com.ho.edcustom.DTO.Request;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.ho.edcustom.DTO.KeyCaps;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Map;
 
 @Getter
 @AllArgsConstructor
@@ -12,7 +16,7 @@ public class ItemRequest {
     private String title;
     private String barebonecolor;
     private String keyboardtype;
-    private String keycapcolor;
+    private Map<String, String> keycapcolor;
     private String design;
     private String switchcolor;
     //private String itemimage;

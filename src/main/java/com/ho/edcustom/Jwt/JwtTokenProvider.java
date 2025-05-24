@@ -45,7 +45,6 @@ public class JwtTokenProvider {
         claims.put("name",member.getName());
         claims.put("email",member.getEmail());
         claims.put("nickname",member.getNickname());
-        //claims.put("password",member.getPassword());
         return claims;
     }
     private Claims getClaims(String token) {

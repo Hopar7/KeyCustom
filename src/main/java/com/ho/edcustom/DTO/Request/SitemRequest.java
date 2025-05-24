@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +14,7 @@ public class SitemRequest {
     private String title;
     private String barebonecolor;
     private String keyboardtype;
-    private String keycapcolor;
+    private Map<String, String> keycapcolor;
     private String design;
     private String switchcolor;
     private String imageUrl;
