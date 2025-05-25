@@ -24,7 +24,6 @@ public class SharedItemController {
                  DTO.getBarebonecolor(),
                  DTO.getKeyboardtype(),
                  DTO.getKeycapcolor(),
-                 DTO.getDesign(),
                  DTO.getSwitchcolor(),
                  DTO.getImageUrl());
         return new ResponseEntity<>(Response,Response.getStatus());

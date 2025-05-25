@@ -22,9 +22,9 @@ import java.util.stream.Stream;
 public class SharedItemService {
     private final SharedItemRepository sharedItemRepository;
     private final FireBaseService fireBaseService;
-    public HttpResponse saveItem(String email, String title, String barebonecolor, String keyboardtype, Map<String, String> keycapcolor, String design, String switchcolor, String imageUrl){
+    public HttpResponse saveItem(String email, String title, String barebonecolor, String keyboardtype, Map<String, String> keycapcolor, String switchcolor, String imageUrl){
 
-        if (Stream.of(email, barebonecolor, keyboardtype, design, switchcolor)
+        if (Stream.of(email, barebonecolor, keyboardtype, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
             return new HttpResponse(HttpStatus.BAD_REQUEST, ErrorCode.ITEM_BAD_REQUEST, null);
         }
@@ -40,7 +40,6 @@ public class SharedItemService {
                 .barebonecolor(barebonecolor)
                 .keyboardtype(keyboardtype)
                 .keycapcolor(keyCaps)
-                .design(design)
                 .switchcolor(switchcolor)
                 .imageUrl(imageUrl)
                 .createdAt(LocalDateTime.now())

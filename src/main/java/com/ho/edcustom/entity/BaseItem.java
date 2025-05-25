@@ -35,8 +35,6 @@ public abstract class BaseItem {
     @Column(columnDefinition = "jsonb")
     KeyCaps keycapcolor;
 
-    String design;//디자인
-
     String switchcolor;  //스위치
 
     @Column(name = "imageurl")

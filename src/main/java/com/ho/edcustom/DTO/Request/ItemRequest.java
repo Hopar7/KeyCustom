@@ -17,7 +17,6 @@ public class ItemRequest {
     private String barebonecolor;
     private String keyboardtype;
     private Map<String, String> keycapcolor;
-    private String design;
     private String switchcolor;
     //private String itemimage;
 }

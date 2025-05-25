@@ -26,7 +26,6 @@ public class ItemController {
                  DTO.getBarebonecolor(),
                  DTO.getKeyboardtype(),
                  DTO.getKeycapcolor(),
-                 DTO.getDesign(),
                  DTO.getSwitchcolor(),
                         multipartFile);
         return new ResponseEntity<>(Response,Response.getStatus());

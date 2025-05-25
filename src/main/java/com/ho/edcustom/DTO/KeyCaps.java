@@ -8,7 +8,7 @@ public class KeyCaps {
     private Map<String, String> keyColors = new HashMap<>();
 
     private static final List<String> ALL_KEYS = List.of(
-            "keycap_ESC","keycap_F1","keycap_F2","keycap_F3","keycap_F4","keycap_F5","keycap_F6","keycap_F7","keycap_F8",
+            "keycap_Esc","keycap_F1","keycap_F2","keycap_F3","keycap_F4","keycap_F5","keycap_F6","keycap_F7","keycap_F8",
             "keycap_F9","keycap_F10","keycap_F11","keycap_F12",
 
             "keycap_Grave","keycap_1","keycap_2","keycap_3","keycap_4","keycap_5","keycap_6","keycap_7",
@@ -26,13 +26,13 @@ public class KeyCaps {
             "keycap_LCtrl","keycap_Window","keycap_LAlt","keycap_Space","keycap_RAlt","keycap_Fn",
             "keycap_Menu","keycap_RCtrl",
 
-            "keycap_PrintScreen","keycap_ScrollLock","keycap_PauseBreak",
-            "keycap_Insert","keycap_Home","keycap_PageUp","keycap_Delete","keycap_End","keycap_PageDown",
+            "keycap_Print","keycap_ScrollLock","keycap_Pause",
+            "keycap_Insert","keycap_Home","keycap_PgUp","keycap_Delete","keycap_End","keycap_PgDn",
             "keycap_Up","keycap_Left","keycap_Down","keycap_Right",
 
-            "keycap_NumLock","keycap_Devide","keycap_Multiple","keycap_Minus2","keycap_Plus","keycap_Enter2","keycap_Point",
-            "keycap_Num0","keycap_Num1","keycap_Num2","keycap_Num3","keycap_Num4","keycap_Num5","keycap_Num6",
-            "keycap_Num7","keycap_Num8","keycap_Num9"
+            "keycap_KeyNumLock","keycap_KeySlash","keycap_KeyStar","keycap_KeyMinus","keycap_KeyPlus","keycap_KeyEnter","keycap_KeyDot",
+            "keycap_Key0","keycap_Key1","keycap_Key2","keycap_Key3","keycap_Key4","keycap_Key5","keycap_Key6",
+            "keycap_Key7","keycap_Key8","keycap_Key9"
     );
 
     public KeyCaps() {
