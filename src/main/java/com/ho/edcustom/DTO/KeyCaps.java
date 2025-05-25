@@ -51,6 +51,12 @@ public class KeyCaps {
         }
     }
 
+    public  void setAllColors(String colors) {
+        for (String key : ALL_KEYS) {
+            keyColors.put(key, colors);
+        }
+    }
+
     public Map<String, String> getKeyColors() {
         return keyColors;
     }

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.DataInput;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -27,7 +28,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final FireBaseService fireBaseService;
     public HttpResponse saveItem(String email, String title, String barebonecolor, String keyboardtype
-            , Map<String, String> keycapcolor,String switchcolor, MultipartFile multipartFile) throws IOException {
+            , Object keycapcolor,String switchcolor, MultipartFile multipartFile) throws IOException {
 
         if (Stream.of(email, barebonecolor, keyboardtype, switchcolor)
                 .anyMatch(str -> str == null || str.isBlank())) {
@@ -35,10 +36,27 @@ public class ItemService {
         }
         String imageUrl =fireBaseService.uploadItem(multipartFile);
 
+
         KeyCaps keyCaps = new KeyCaps();
-        for (Map.Entry<String, String> entry : keycapcolor.entrySet()) {
-            keyCaps.setColor(entry.getKey(), entry.getValue());
+
+        if (keycapcolor instanceof String) {
+            String strColors = (String) keycapcolor;
+            keyCaps.setAllColors(strColors);
+
         }
+        else if(keycapcolor instanceof Map)
+        {
+            Map<?, ?> rawMap = (Map<?, ?>) keycapcolor;
+            Map<String, String> keyColors = new HashMap<>();
+            for (Map.Entry<?, ?> entry : rawMap.entrySet()) {
+                keyColors.put(entry.getKey().toString(), entry.getValue().toString());
+            }
+
+            for (Map.Entry<String, String> entry : keyColors.entrySet()) {
+                keyCaps.setColor(entry.getKey(), entry.getValue());
+            }
+        }
+
 
         itemRepository.save(Item.builder()
                 .email(email)
