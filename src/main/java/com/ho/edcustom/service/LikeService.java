@@ -1,5 +1,6 @@
 package com.ho.edcustom.service;
 
+import com.google.api.Http;
 import com.ho.edcustom.DTO.LikeDTO;
 import com.ho.edcustom.DTO.Response.HttpResponse;
 import com.ho.edcustom.entity.Like;
@@ -28,6 +29,12 @@ public class LikeService {
     @Transactional
     public HttpResponse like(Long memberid,Long shareditemid)
     {
+        if(memberid == null || shareditemid == null)
+        {
+            return new HttpResponse(HttpStatus.BAD_REQUEST,ErrorCode.BAD_REQUEST,null);
+        }
+
+
         Optional<Member> member = memberRepository.findById(memberid);
         if (member.isEmpty()) {
             return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND,null);
