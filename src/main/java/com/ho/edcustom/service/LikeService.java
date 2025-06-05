@@ -61,7 +61,7 @@ public class LikeService {
     public HttpResponse memberliked(Long memberid)
     {
         List<LikeDTO> list = likeRepository.findDTOByMemberId(memberid);
-
+        System.out.println(memberid);
         if (list.isEmpty()) {
             return new HttpResponse(HttpStatus.NOT_FOUND,ErrorCode.MEMBER_NOT_FOUND,null);
         }
