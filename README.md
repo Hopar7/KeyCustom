@@ -31,9 +31,9 @@ EDCustom은 [문제 해결 / 기능 구현 목적]을 위해 개발된 프로젝
 
 <div align=center> 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
-<img src"https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/>
-<img src"https://img.shields.io/badge/postgresql-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
-<img src"https://img.shields.io/badge/swagger-85EA2D?style=flat-square&logo=swagger&logoColor=white"/>
+<img src"https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"/>
+<img src"https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"/>
+<img src"https://img.shields.io/badge/swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white"/>
   
 </div>
 ---
