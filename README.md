@@ -27,17 +27,15 @@ EDCustom은 [문제 해결 / 기능 구현 목적]을 위해 개발된 프로젝
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
-- Language: 
-- Framework:
-- Database:
-- 기타:
+<div align=center><h1>📚 STACKS</h1></div>
 
-예:
-- TypeScript / JavaScript
-- Next.js / React
-- Spring Boot
-- PostgreSQL
-
+<div align=center> 
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+<img src"https://img.shields.io/badge/Spring Boot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/>
+<img src"https://img.shields.io/badge/postgresql-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+<img src"https://img.shields.io/badge/swagger-85EA2D?style=flat-square&logo=swagger&logoColor=white"/>
+  
+</div>
 ---
 
 ## 📂 프로젝트 구조 (Project Structure)
