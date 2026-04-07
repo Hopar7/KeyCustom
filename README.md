@@ -46,6 +46,10 @@ Frontend : <img src="https://img.shields.io/badge/firebase-DD2C00?style=for-the-
 
 ## 📂 개발자 소개
 **·김호연:팀장,Backend,Server배포**
+<br>
 **·현지훈:UI/UX,Frontend**
+<br>
 **·조우주:3DModeling/Backend**
+<br>
 **·염정규:frontend**
+<br>
